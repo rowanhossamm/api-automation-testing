@@ -1,0 +1,146 @@
+{
+  "info": {
+    "_postman_id": "a89e6416-322f-4462-9d23-389b48b52a72",
+    "name": "API Testing Practice",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49372726",
+    "_collection_link": "https://go.postman.co/collection/49372726-a89e6416-322f-4462-9d23-389b48b52a72?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "GET All Companies",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Response is a JSON array\", function () {\r",
+              "    const response = pm.response.json();\r",
+              "    pm.expect(response).to.be.an(\"array\");\r",
+              "});\r",
+              "pm.test(\"Each company has id and name\", function () {\r",
+              "    const response = pm.response.json();\r",
+              "\r",
+              "    response.forEach(function (company) {\r",
+              "        pm.expect(company).to.have.property(\"id\");\r",
+              "        pm.expect(company).to.have.property(\"name\");\r",
+              "    });\r",
+              "});\r",
+              "pm.test(\"Each company has a non-empty domain\", function () {\r",
+              "    const response = pm.response.json();\r",
+              "\r",
+              "    response.forEach(function (company) {\r",
+              "        pm.expect(company).to.have.property(\"domain\");\r",
+              "        pm.expect(company.domain).to.not.be.empty;\r",
+              "    });\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/companies",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "companies"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST Echo Profile",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response contains sent name and role\", function () {\r",
+              "    const response = pm.response.json();\r",
+              "\r",
+              "    pm.expect(response.data.name).to.eql(pm.iterationData.get(\"username\"));\r",
+              "    pm.expect(response.data.role).to.eql(\"QA Engineer\");\r",
+              "});\r",
+              "pm.test(\"Skill is API Testing\", function () {\r",
+              "    const response = pm.response.json();\r",
+              "\r",
+              "    pm.expect(response.data.skill).to.eql(\"API Testing\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"{{username}}\",\r\n  \"role\": \"QA Engineer\",\r\n  \"skill\": \"API Testing\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{echo_url}}/post",
+          "host": [
+            "{{echo_url}}"
+          ],
+          "path": [
+            "post"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"content\": \"this is my new post\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://www.facebook.com/posts",
+          "protocol": "https",
+          "host": [
+            "www",
+            "facebook",
+            "com"
+          ],
+          "path": [
+            "posts"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
