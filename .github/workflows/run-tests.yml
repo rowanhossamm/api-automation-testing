@@ -18,7 +18,7 @@ jobs:
         node-version: '18'
 
     - name: Install Newman
-      run: run: npm install -g newman newman-reporter-htmlextra
+      run: npm install -g newman newman-reporter-htmlextra
 
     - name: Run API Tests
       run: newman run "API Testing Practice.postman_collection.json" -e "Beeceptor Practice Environment.postman_environment.json" -d "data.csv" -r htmlextra
