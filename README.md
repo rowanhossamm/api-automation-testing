@@ -10,7 +10,6 @@ This repository contains an automated API testing pipeline built using **Postman
 
 ## Key Features
 * **CI/CD Integration:** Tests trigger automatically on every `push` to the `main` branch to catch breaking changes early.
-* **Scheduled Execution:** Configured to run automatically using Cron schedules to monitor API stability daily.
 * **Data-Driven Testing:** Driven by external data via a CSV file to validate multiple scenarios and iterations.
 * **Advanced Reporting:** Generates detailed, interactive HTML dashboards containing full request/response logs, preserved as GitHub Workflow Artifacts.
 
