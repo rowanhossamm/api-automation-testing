@@ -21,4 +21,4 @@ jobs:
       run: npm install -g newman
 
     - name: Run API Tests
-      run: newman run "API Testing Practice.postman_collection.json" -e "Beeceptor Practice Environment.postman_environment.json"
+      run: newman run "API Testing Practice.postman_collection.json" -e "Beeceptor Practice Environment.postman_environment.json" -d "data.csv"
