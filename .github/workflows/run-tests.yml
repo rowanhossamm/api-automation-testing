@@ -22,3 +22,9 @@ jobs:
 
     - name: Run API Tests
       run: newman run "API Testing Practice.postman_collection.json" -e "Beeceptor Practice Environment.postman_environment.json" -d "data.csv" -r htmlextra
+    
+    - name: Upload Postman Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: postman-html-report
+        path: newman/
