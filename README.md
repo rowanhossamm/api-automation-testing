@@ -22,3 +22,9 @@ To execute these tests on your local machine, follow these steps:
    Make sure you have Node.js installed, then run:
    ```bash
    npm install -g newman newman-reporter-htmlextra
+
+2. **Run the Collection:**
+   Execute the following command in your terminal:
+
+```bash
+newman run "API Testing Practice.postman_collection.json" -e "Beeceptor Practice Environment.postman_environment.json" -d "data.csv" -r htmlextra
